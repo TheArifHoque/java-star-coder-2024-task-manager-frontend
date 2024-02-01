@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ApiService } from '../../service/api.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private apiService: ApiService
   ) {
     this.loginForm = this.formBuilder.group({
       username: [
@@ -35,6 +37,20 @@ export class LoginComponent {
   }
 
   login(): void {
-    console.log(this.loginForm.value);
+    if (this.loginForm.valid) {
+      this.apiService
+      .login(
+        this.loginForm.get('username')?.value,
+        this.loginForm.get('password')?.value
+      )
+      .subscribe({
+        next: (result) => {
+          console.log(result);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    }
   }
 }
