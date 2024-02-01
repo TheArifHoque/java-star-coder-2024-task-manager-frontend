@@ -7,11 +7,13 @@ import { LoginComponent } from './component/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { TaskDetailsComponent } from './component/task-details/task-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    TaskDetailsComponent
   ],
   imports: [
     BrowserModule,

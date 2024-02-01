@@ -1,0 +1,33 @@
+<div class="section">
+    <h2>Task Details Page</h2>
+    <form [formGroup]="taskForm" (ngSubmit)="updateTask()">
+        <label for="title">Task Title</label>
+        <input type="text" name="title" id="title" formControlName="title">
+        <p
+            class="error-msg"
+            *ngIf="taskForm.get('title')?.dirty &&
+            taskForm.get('title')?.hasError('required')"
+            >
+            Title is required
+        </p>
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description" formControlName="title">
+        <p
+            class="error-msg"
+            *ngIf="taskForm.get('description')?.dirty &&
+            taskForm.get('description')?.hasError('required')"
+            >
+            Please enter task description
+        </p>
+        <label for="status">Task Status</label>
+        <input type="text" name="status" id="status" formControlName="status">
+        <p
+            class="error-msg"
+            *ngIf="taskForm.get('status')?.dirty &&
+            taskForm.get('status')?.hasError('required')"
+            >
+            What is the status?
+        </p>
+        <button [disabled]="!taskForm.valid" class="button">Update Task</button>
+    </form>
+</div>
