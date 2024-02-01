@@ -1,0 +1,65 @@
+<div class="login-section">
+    <div class="grid-wrapper">
+        <div class="left-div">
+            <img src="../../../assets/images/login-banner.svg" alt="">
+        </div>
+        <div class="right-div">
+            <h2>Welcome to Task Manager App</h2>
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" formControlName="username">
+                <p 
+                    class="error-msg" 
+                    *ngIf="
+                    loginForm.get('username')?.dirty && 
+                    loginForm.get('username')?.hasError('required')"
+                >
+                    Username is required!
+                </p>
+                <p 
+                    class="error-msg"
+                    *ngIf="loginForm.get('username')?.dirty && 
+                    loginForm.get('username')?.hasError('minlength')"
+                    >
+                    Username should be at least 5 characters long
+                </p>
+                <p 
+                    class="error-msg"
+                    *ngIf="loginForm.get('username')?.dirty && 
+                    loginForm.get('username')?.hasError('maxlength')"
+                    >
+                    Username should be at max 25 characters long
+                </p>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" formControlName="password">
+                <p 
+                    class="error-msg" 
+                    *ngIf="
+                    loginForm.get('password')?.dirty && 
+                    loginForm.get('password')?.hasError('required')"
+                >
+                    Password is required!
+                </p>
+                <p 
+                    class="error-msg"
+                    *ngIf="loginForm.get('password')?.dirty && 
+                    loginForm.get('password')?.hasError('minlength')"
+                    >
+                    Password should be at least 5 characters long
+                </p>
+                <p 
+                    class="error-msg"
+                    *ngIf="loginForm.get('password')?.dirty && 
+                    loginForm.get('password')?.hasError('maxlength')"
+                    >
+                    Password should be at max 25 characters long
+                </p>
+                <button [disabled]="!loginForm.valid" class="button">Login</button>
+            </form>
+            <div class="register-msg">
+                <p>Don't have an account?</p>
+                <a href="">Register here</a>
+            </div>
+        </div>
+    </div>
+</div>
